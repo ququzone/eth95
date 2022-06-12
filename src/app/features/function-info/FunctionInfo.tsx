@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { useEvent } from "react-use";
 
+import { ethers } from "ethers";
+
 import FunctionDetails from "./FunctionDetails";
 import FunctionList from "./FunctionList";
 import FunctionCall from "../function-call/FunctionCall";
@@ -29,6 +31,7 @@ const FunctionInfo = ({ contract }) => {
           inputs = x.inputs.map((i) => i.type).join(",")
         }
         x.signature = `${x.name}(${inputs})`;
+        x.sighash = ethers.utils.id(x.signature).substring(0, 10);
         return x;
       })
       .sort((a, b) => a.name.localeCompare(b.name));

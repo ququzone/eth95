@@ -122,6 +122,7 @@ const FunctionForm = ({ fn }) => {
             types={types}
             inputs={fn.inputs}
             signature={fn.signature}
+            sighash={fn.sighash}
             opts={opts}
           />
           <GasLimitCheckbox

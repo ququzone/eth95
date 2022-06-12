@@ -27,7 +27,7 @@ const customStyles = {
   },
 };
 
-const EncodeButton = ({ args, types, inputs, signature, opts }) => {
+const EncodeButton = ({ args, types, inputs, signature, sighash, opts }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const openModal = () => setIsModalOpen(true);
   const closeModal = () => setIsModalOpen(false);
@@ -48,6 +48,7 @@ const EncodeButton = ({ args, types, inputs, signature, opts }) => {
           types={types}
           inputs={inputs}
           signature={signature}
+          sighash={sighash}
           opts={opts}
         />
       </Modal>

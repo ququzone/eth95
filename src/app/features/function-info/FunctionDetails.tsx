@@ -73,6 +73,13 @@ const FunctionInfo = ({ fn }) => {
         </DataItem>
 
         <DataItem>
+          <b>Sighash:</b>{" "}
+          <Name className="function-details-sighash" title={fn.sighash}>
+            {fn.sighash}
+          </Name>
+        </DataItem>
+
+        <DataItem>
           <b>State Mutability:</b>{" "}
           <FloatRight className="function-details-state-mutability">
             {fn?.stateMutability?.toString()}
