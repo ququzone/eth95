@@ -23,6 +23,15 @@ const FunctionInfo = ({ contract }) => {
   if (contract) {
     fns = contract.abi
       .filter((x) => x.type === "function")
+      .map((x) => {
+        console.log(x);
+        let inputs = '';
+        if (x.inputs) {
+          inputs = x.inputs.map((i) => i.type).join(",")
+        }
+        x.signature = `${x.name}(${inputs})`;
+        return x;
+      })
       .sort((a, b) => a.name.localeCompare(b.name));
     selectedFn = fns[selectedIdx];
   } else {

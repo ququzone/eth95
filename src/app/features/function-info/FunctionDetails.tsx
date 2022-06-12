@@ -66,6 +66,13 @@ const FunctionInfo = ({ fn }) => {
         </DataItem>
 
         <DataItem>
+          <b>Signature:</b>{" "}
+          <Name className="function-details-signature" title={fn.signature}>
+            {fn.signature}
+          </Name>
+        </DataItem>
+
+        <DataItem>
           <b>State Mutability:</b>{" "}
           <FloatRight className="function-details-state-mutability">
             {fn?.stateMutability?.toString()}

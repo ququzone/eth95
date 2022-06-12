@@ -15,7 +15,16 @@ const DataPanel = styled(Panel)`
   overflow-y: auto;
 `;
 
-const EncodeModal = ({ closeModal, args, types, inputs, opts }) => {
+const DataPanelSignature = styled(Panel)`
+  padding: 1rem;
+  width: 100%;
+  font-size: 14px;
+  font-family: monospace;
+  overflow-wrap: anywhere;
+  overflow-y: auto;
+`;
+
+const EncodeModal = ({ closeModal, args, types, inputs, signature, opts }) => {
   const [encoded, setEncoded] = useState("");
   const [hasError, setHasError] = useState(false);
 
@@ -46,6 +55,8 @@ const EncodeModal = ({ closeModal, args, types, inputs, opts }) => {
     <ModalContainer>
       <ModalHeader onCloseClick={closeModal} label="Submit via Proxy" />
       <ModalContent>
+        <div style={{ marginTop: "1rem" }}>Signature:</div>
+        <DataPanelSignature variant="well">{signature}</DataPanelSignature>
         <div style={{ marginTop: "1rem" }}>Inputs:</div>
         <DataPanel variant="well">
           {types.map((type, idx) => {
