@@ -16,11 +16,17 @@ const Item = styled.div`
 `;
 
 const ContractItem = ({ name, idx = 0 }: { name: string; idx: number }) => {
-  const { setSelectedIdx, selectedIdx } = Contracts.useContainer();
+  const { setSelectedIdx, selectedIdx, removeContractByIdx } = Contracts.useContainer();
   const isActive = selectedIdx === idx;
 
   const handleClick = () => {
     setSelectedIdx(isActive ? null : idx);
+  };
+
+  const handleKeyDown = event => {
+    if(event.key == 'Delete') {
+      removeContractByIdx(selectedIdx)
+    }
   };
 
   // ensure an active item is always in view
@@ -35,8 +41,10 @@ const ContractItem = ({ name, idx = 0 }: { name: string; idx: number }) => {
     <Item
       isActive={isActive}
       onClick={handleClick}
+      onKeyDown={handleKeyDown}
       className="contract-list-item"
       ref={ref}
+      tabIndex={0}
     >
       {name}
     </Item>
