@@ -25,14 +25,13 @@ export function useContracts() {
   };
 
   const addContract = (contract: Contract) => {
-    var newContracts;
     setContracts((prevContracts) => {
-      newContracts = [...prevContracts, contract].sort((a, b) =>
+      const newContracts = [...prevContracts, contract].sort((a, b) =>
         a.name.localeCompare(b.name)
       );
+      localStorage.setItem("contracts", JSON.stringify(newContracts));
       return newContracts;
     });
-    localStorage.setItem("contracts", JSON.stringify(newContracts));
   };
 
   const overwriteContract = (contracts: Contract[]) => {
@@ -46,7 +45,11 @@ export function useContracts() {
   };
   const removeContractByIdx = (idx: number) => {
     setSelectedIdx(null);
-    setContracts((prevContracts) => prevContracts.filter((x, i) => idx !== i));
+    setContracts((prevContracts) => {
+      const newContracts = prevContracts.filter((x, i) => idx !== i);
+      localStorage.setItem("contracts", JSON.stringify(newContracts));
+      return newContracts;
+    });
   };
 
   const addByAbi = (abi: any[], name: string) => {
